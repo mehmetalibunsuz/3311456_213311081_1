@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health/components/constants.dart';
-
 import 'components/dialog_box.dart';
 import 'components/todo_tile.dart';
+import 'helpers/helpers_database.dart';
 
 class ToDoPage extends StatefulWidget {
   const ToDoPage({super.key});
@@ -13,19 +12,38 @@ class ToDoPage extends StatefulWidget {
 
 class _ToDoPageState extends State<ToDoPage> {
   final _controller = TextEditingController();
-  List toDoList = [
-    ["Make Tutorial", false],
-    ["Do Exercise", false],
-  ];
-  void checkBoxChanged(bool? value, int index) {
+  List<List<dynamic>> toDoList = [];
+
+  final dbHelper = DatabaseHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    loadToDoList();
+  }
+
+  void loadToDoList() async {
+    final data = await dbHelper.getToDoList();
     setState(() {
-      toDoList[index][1] = !toDoList[index][1];
+      toDoList = data.map((item) => [item['taskName'], item['taskCompleted'] == 1]).toList();
     });
   }
 
-  void saveNewTask() {
+  void checkBoxChanged(bool? value, int index) async {
+    final int id = index + 1; // Assuming the ID starts from 1
+    final int completed = value! ? 1 : 0;
+    await dbHelper.updateTask(id, completed);
     setState(() {
-      toDoList.add([_controller.text, false]);
+      toDoList[index][1] = value;
+    });
+  }
+
+  void saveNewTask() async {
+    final taskName = _controller.text;
+    final taskCompleted = 0; // Assuming new tasks are not completed by default
+    final int id = await dbHelper.insertTask(taskName, taskCompleted);
+    setState(() {
+      toDoList.add([taskName, taskCompleted == 1]);
     });
     Navigator.of(context).pop();
   }
@@ -43,7 +61,9 @@ class _ToDoPageState extends State<ToDoPage> {
     );
   }
 
-  void deleteTask(int index) {
+  void deleteTask(int index) async {
+    final int id = index + 1; // Assuming the ID starts from 1
+    await dbHelper.deleteTask(id);
     setState(() {
       toDoList.removeAt(index);
     });
