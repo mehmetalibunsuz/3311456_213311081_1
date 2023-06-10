@@ -13,7 +13,7 @@ class AccountPage extends StatelessWidget {
 
     if (currentUser == null) {
       // Kullanıcı oturum açmamışsa veya kayıtlı değilse burada yönlendirme yapabilirsiniz
-      return Center(child: Text('Oturum açmış bir kullanıcı bulunamadı.'));
+      return const Center(child: Text('Oturum açmış bir kullanıcı bulunamadı.'));
     }
 
     return Scaffold(
