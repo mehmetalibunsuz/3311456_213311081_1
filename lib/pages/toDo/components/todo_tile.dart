@@ -33,7 +33,7 @@ class ToDoTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 121, 255, 103),
+            color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(children: [
@@ -52,7 +52,7 @@ class ToDoTile extends StatelessWidget {
                     : TextDecoration.none,
                 decorationColor: Colors.black,
                 decorationThickness: 2,
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.primary,
                 fontSize: 22,
                 fontFamily: 'BebasNeue',
               ),

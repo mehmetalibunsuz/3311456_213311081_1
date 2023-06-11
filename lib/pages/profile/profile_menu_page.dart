@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health/components/constants.dart';
-import 'package:health/pages/login/login_page.dart';
-import 'account_page.dart';
+import 'package:health/pages/profile/nofitications.dart';
+import 'package:share_plus/share_plus.dart';
+import 'account.dart';
 import 'components/profile_menu_tile.dart';
 import 'components/profilepic_tile.dart';
+import '../../feedback/feedback.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({super.key});
@@ -33,14 +36,18 @@ class ProfileMenu extends StatelessWidget {
                   iconImage: "assets/exerciseNavBar/user.png",
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AccountPage(),
+                      builder: (context) => ProfilePage(),
                     ));
                   },
                 ),
                 ProfileTile(
                   text: "Notifications",
                   iconImage: "assets/account/notification.png",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Notifications(),
+                    ));
+                  },
                 ),
               ],
             ),
@@ -55,8 +62,12 @@ class ProfileMenu extends StatelessWidget {
                 ),
                 ProfileTile(
                   text: "Help Center",
-                  iconImage: "assets/account/settings.png",
-                  onPressed: () {},
+                  iconImage: "assets/account/help.png",
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FeedbackScreen(),
+                    ));
+                  },
                 ),
               ],
             ),
@@ -65,15 +76,18 @@ class ProfileMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ProfileTile(
-                  text: "Settings",
-                  iconImage: "assets/account/settings.png",
-                  onPressed: () {},
+                  text: "share app",
+                  iconImage: "assets/account/share.png",
+                  onPressed: () {
+                    Share.share('com.example.health');
+                  },
                 ),
                 ProfileTile(
-                  text: "My Account",
-                  iconImage: "assets/exerciseNavBar/user.png",
+                  text: "Log out",
+                  iconImage: "assets/account/logout.png",
                   onPressed: () {
                     FirebaseAuth.instance.signOut();
+                    GoogleSignIn().signOut();
                   },
                 ),
               ],

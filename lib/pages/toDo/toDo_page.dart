@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:health/pages/settings_page.dart';
 import 'components/dialog_box.dart';
 import 'components/todo_tile.dart';
 import 'helpers/helpers_database.dart';
@@ -25,7 +27,9 @@ class _ToDoPageState extends State<ToDoPage> {
   void loadToDoList() async {
     final data = await dbHelper.getToDoList();
     setState(() {
-      toDoList = data.map((item) => [item['taskName'], item['taskCompleted'] == 1]).toList();
+      toDoList = data
+          .map((item) => [item['taskName'], item['taskCompleted'] == 1])
+          .toList();
     });
   }
 

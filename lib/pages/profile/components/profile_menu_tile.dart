@@ -16,13 +16,13 @@ class ProfileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      width: 180,
+      width: 170,
       child: TextButton(
         style: TextButton.styleFrom(
           foregroundColor: Colors.black,
           padding: const EdgeInsets.all(20),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         ),
         onPressed: onPressed,

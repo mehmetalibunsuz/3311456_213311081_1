@@ -6,24 +6,16 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade900,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: CalendarTimeline(
-              initialDate: DateTime(2023, 5, 15),
-              firstDate: DateTime(2023, 5, 15),
-              lastDate: DateTime(2023, 12, 31),
-              onDateSelected: (date) => print(date),
-              leftMargin: 20,
-              monthColor: Colors.white,
-              dayColor: Colors.white,
-              activeDayColor: Colors.black,
-              activeBackgroundDayColor: Colors.limeAccent[400],
-              dotsColor: Colors.limeAccent[400]),
-        ),
-      ),
-    );
+    return CalendarTimeline(
+        initialDate: DateTime(2023, 5, 15),
+        firstDate: DateTime(2023, 5, 15),
+        lastDate: DateTime(2023, 12, 31),
+        onDateSelected: (date) => print(date),
+        leftMargin: 20,
+        monthColor: Colors.white,
+        dayColor: Colors.white,
+        activeDayColor: Colors.black,
+        activeBackgroundDayColor: Colors.limeAccent[400],
+        dotsColor: Colors.limeAccent[400]);
   }
 }

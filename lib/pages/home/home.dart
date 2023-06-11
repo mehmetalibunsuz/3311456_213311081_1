@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/constants.dart';
-import 'package:health/pages/bmi/calculator_page.dart';
 import 'package:health/pages/fitness/fitness_page.dart';
 import 'package:health/pages/watch.dart';
-import '../../statistics/statistics.dart';
+import '../../waterReminder/water_page.dart';
 import 'components/mid_comp.dart';
 import 'components/run_card.dart';
 import 'tabBar/tabBar.dart';
@@ -21,7 +20,7 @@ class AnaEkran extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const MyTabBar(),
+                MyTabBar(),
                 const SizedBox(height: 15),
                 const RunCard(),
                 const SizedBox(height: 15),
@@ -31,7 +30,7 @@ class AnaEkran extends StatelessWidget {
                     MidComp(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => CalculatorScreen(),
+                          builder: (context) => WaterReminderScreen(),
                         ));
                       },
                       image: 'assets/fitness/anaEkran.jpg',
@@ -47,12 +46,12 @@ class AnaEkran extends StatelessWidget {
                         text: 'All\nSta\ntis\ntics'),
                   ],
                 ),
-                const SizedBox(height: 10),
                 Stack(
                   children: [
                     Image.asset(
                       'assets/steps/womans.png',
-                      height: 260,
+                      height: 210,
+                      width: 900,
                       alignment: const Alignment(1, -25),
                     ),
                     Positioned(
@@ -68,7 +67,7 @@ class AnaEkran extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Watch(),
+                                builder: (context) => const Watch(),
                               ));
                             },
                             child: Container(

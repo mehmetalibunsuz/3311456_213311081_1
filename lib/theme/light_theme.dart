@@ -5,6 +5,6 @@ ThemeData lightTheme = ThemeData(
     background: Colors.white,
     primary: Colors.grey.shade900,
     secondary: Colors.white,
-    primaryContainer: Color.fromARGB(255, 121, 255, 103),
+    primaryContainer: Colors.grey.shade300,
   ),
 );

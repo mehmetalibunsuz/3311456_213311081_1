@@ -60,8 +60,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         },
                         icon: Image.asset(
                           "assets/exerciseNavBar/home.png",
-                          width: 30,
-                          height: 30,
+                          height: 25,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
@@ -79,6 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         },
                         icon: Image.asset(
                           "assets/exerciseNavBar/Calories.png",
+                          height: 25,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
@@ -96,8 +96,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         },
                         icon: Image.asset(
                           "assets/exerciseNavBar/hamburger.png",
-                          width: 30,
-                          height: 30,
+                          height: 25,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
@@ -115,8 +114,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         },
                         icon: Image.asset(
                           "assets/exerciseNavBar/user.png",
-                          width: 30,
-                          height: 30,
+                          height: 25,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),

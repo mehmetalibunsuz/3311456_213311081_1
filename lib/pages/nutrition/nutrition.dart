@@ -44,7 +44,7 @@ class _NutritionState extends State<Nutrition> {
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(4.0),
             child: Column(
               children: [
                 Text('NUTRITIONS',
@@ -96,6 +96,7 @@ class _NutritionState extends State<Nutrition> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(
                     itemCount: _result.length,

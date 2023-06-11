@@ -34,20 +34,39 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  Future signUp() async {
-    if (passwordConfirmed()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+  void signUp() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    if (_passwordController.text != _confirmpasswordController.text) {
+      Navigator.pop(context);
+      return;
+    }
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
       );
-      addUserDetails(
-        _firstnameController.text.trim(),
-        _lastnameController.text.trim(),
-        _emailController.text.trim(),
-        int.parse(
-          _ageController.text.trim(),
-        ),
-      );
+
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(userCredential.user!.email)
+          .set({
+        'username': _emailController.text.split('@')[0],
+        'firstname': _firstnameController.text,
+        'lastname': _lastnameController.text,
+        'age': _ageController.text,
+      });
+
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      displayMessage("Passwords don't match!");
+      return;
     }
   }
 
@@ -59,6 +78,15 @@ class _RegisterPageState extends State<RegisterPage> {
       'email': email,
       'age': age,
     });
+  }
+
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
   }
 
   bool passwordConfirmed() {
