@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health/components/constants.dart';
 import 'package:health/pages/profile/nofitications.dart';
+import 'package:health/settings.dart';
 import 'package:share_plus/share_plus.dart';
 import 'account.dart';
 import 'components/profile_menu_tile.dart';
 import 'components/profilepic_tile.dart';
-import '../../feedback/feedback.dart';
+import '../feedback/feedback.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({super.key});
@@ -58,7 +59,11 @@ class ProfileMenu extends StatelessWidget {
                 ProfileTile(
                   text: "Settings",
                   iconImage: "assets/account/settings.png",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SettingsPage(),
+                    ));
+                  },
                 ),
                 ProfileTile(
                   text: "Help Center",

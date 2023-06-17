@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health/components/constants.dart';
+import 'package:health/pages/menus/menu.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({super.key});
@@ -66,10 +67,17 @@ class _MyTabBarState extends State<MyTabBar> {
                   ),
                 ],
               ),
-              Image.asset(
-                'assets/exerciseNavBar/anamenu.png',
-                height: 35,
-                color: Theme.of(context).colorScheme.primary,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Menus(),
+                  ));
+                },
+                child: Image.asset(
+                  'assets/exerciseNavBar/anamenu.png',
+                  height: 35,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
             ],
           );

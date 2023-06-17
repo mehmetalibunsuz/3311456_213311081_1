@@ -1,12 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:health/pages/settings_page.dart';
-import 'components/dialog_box.dart';
-import 'components/todo_tile.dart';
+import 'package:health/pages/toDo/components/dialog_box.dart';
+import 'package:health/pages/toDo/components/todo_tile.dart';
+
 import 'helpers/helpers_database.dart';
 
 class ToDoPage extends StatefulWidget {
-  const ToDoPage({super.key});
+  const ToDoPage({Key? key}) : super(key: key);
 
   @override
   State<ToDoPage> createState() => _ToDoPageState();
@@ -14,41 +13,46 @@ class ToDoPage extends StatefulWidget {
 
 class _ToDoPageState extends State<ToDoPage> {
   final _controller = TextEditingController();
-  List<List<dynamic>> toDoList = [];
-
-  final dbHelper = DatabaseHelper();
+  DatabaseHelper _databaseHelper = DatabaseHelper.instance;
+  List<Map<String, dynamic>> _toDoList = [];
 
   @override
   void initState() {
     super.initState();
-    loadToDoList();
+    _loadToDoList();
   }
 
-  void loadToDoList() async {
-    final data = await dbHelper.getToDoList();
+  void _loadToDoList() async {
+    final tasks = await _databaseHelper.getTasks();
     setState(() {
-      toDoList = data
-          .map((item) => [item['taskName'], item['taskCompleted'] == 1])
-          .toList();
+      _toDoList.clear();
+      _toDoList.addAll(tasks);
     });
   }
 
   void checkBoxChanged(bool? value, int index) async {
-    final int id = index + 1; // Assuming the ID starts from 1
-    final int completed = value! ? 1 : 0;
-    await dbHelper.updateTask(id, completed);
+    final int id = _toDoList[index]['id'];
+    final bool taskCompleted = value ?? false;
+    await _databaseHelper.updateTask(id, taskCompleted);
+
     setState(() {
-      toDoList[index][1] = value;
+      _toDoList[index]['taskCompleted'] = taskCompleted ? 1 : 0;
     });
   }
 
   void saveNewTask() async {
-    final taskName = _controller.text;
-    final taskCompleted = 0; // Assuming new tasks are not completed by default
-    final int id = await dbHelper.insertTask(taskName, taskCompleted);
+    final String taskName = _controller.text;
+    final bool taskCompleted = false;
+    final int id = await _databaseHelper.insertTask(taskName, taskCompleted);
+
     setState(() {
-      toDoList.add([taskName, taskCompleted == 1]);
+      _toDoList.add({
+        'id': id,
+        'taskName': taskName,
+        'taskCompleted': taskCompleted ? 1 : 0,
+      });
     });
+
     Navigator.of(context).pop();
   }
 
@@ -58,18 +62,19 @@ class _ToDoPageState extends State<ToDoPage> {
       builder: (context) {
         return DialogBox(
           controller: _controller,
-          onSave: saveNewTask,
           onCancel: () => Navigator.of(context).pop(),
+          onSave: saveNewTask,
         );
       },
     );
   }
 
   void deleteTask(int index) async {
-    final int id = index + 1; // Assuming the ID starts from 1
-    await dbHelper.deleteTask(id);
+    final int id = _toDoList[index]['id'];
+    await _databaseHelper.deleteTask(id);
+
     setState(() {
-      toDoList.removeAt(index);
+      _toDoList.removeAt(index);
     });
   }
 
@@ -86,10 +91,11 @@ class _ToDoPageState extends State<ToDoPage> {
             Text(
               'TO DO ',
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontSize: 40,
-                  fontFamily: 'BrunoAce',
-                  fontWeight: FontWeight.bold),
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 40,
+                fontFamily: 'BrunoAce',
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Container(
               decoration: BoxDecoration(
@@ -99,7 +105,8 @@ class _ToDoPageState extends State<ToDoPage> {
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 onPressed: createNewTask,
                 shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16))),
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
                 child: Icon(
                   Icons.add,
                   color: Theme.of(context).colorScheme.secondary,
@@ -113,11 +120,11 @@ class _ToDoPageState extends State<ToDoPage> {
       body: Padding(
         padding: const EdgeInsets.only(top: 50.0),
         child: ListView.builder(
-          itemCount: toDoList.length,
+          itemCount: _toDoList.length,
           itemBuilder: (context, index) {
             return ToDoTile(
-              taskName: toDoList[index][0],
-              taskCompleted: toDoList[index][1],
+              taskName: _toDoList[index]['taskName'],
+              taskCompleted: _toDoList[index]['taskCompleted'] == 1,
               onChanged: (value) => checkBoxChanged(value, index),
               deleteFunction: (context) => deleteTask(index),
             );

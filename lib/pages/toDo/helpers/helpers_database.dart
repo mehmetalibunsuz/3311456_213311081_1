@@ -1,56 +1,73 @@
-import 'package:sqflite/sqflite.dart';
+import 'dart:async';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper.internal();
-  factory DatabaseHelper() => _instance;
+  static final DatabaseHelper instance = DatabaseHelper._();
 
   static Database? _database;
 
-  Future<Database> get database async {
+  DatabaseHelper._();
+
+  Future<Database?> get database async {
     if (_database != null) {
-      return _database!;
+      return _database;
     }
-    _database = await initDatabase();
-    return _database!;
+
+    _database = await _initDatabase();
+    return _database;
   }
 
-  DatabaseHelper.internal();
+  Future<Database> _initDatabase() async {
+    final String path = await getDatabasesPath();
+    final String dbPath = join(path, 'todo.db');
 
-  Future<Database> initDatabase() async {
-    final path = join(await getDatabasesPath(), 'todo.db');
     return await openDatabase(
-      path,
+      dbPath,
       version: 1,
-      onCreate: (db, version) async {
-        await db.execute('''
-          CREATE TABLE todo (
-            id INTEGER PRIMARY KEY,
-            taskName TEXT,
-            taskCompleted INTEGER
-          )
-        ''');
-      },
+      onCreate: _createDatabase,
     );
   }
 
-  Future<List<Map<String, dynamic>>> getToDoList() async {
-    final db = await database;
-    return await db.query('todo');
+  Future<void> _createDatabase(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE todo(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        taskName TEXT,
+        taskCompleted INTEGER
+      )
+    ''');
   }
 
-  Future<int> insertTask(String taskName, int taskCompleted) async {
-    final db = await database;
-    return await db.insert('todo', {'taskName': taskName, 'taskCompleted': taskCompleted});
+  Future<List<Map<String, dynamic>>> getTasks() async {
+    final Database? db = await instance.database;
+    return await db!.query('todo');
   }
 
-  Future<int> updateTask(int id, int taskCompleted) async {
+ Future<int> insertTask(String taskName, bool taskCompleted) async {
+  final db = await database;
+  return await db!.insert(
+    'todo',
+    {'taskName': taskName, 'taskCompleted': taskCompleted ? 1 : 0},
+  );
+}
+
+  Future<void> updateTask(int id, bool taskCompleted) async {
     final db = await database;
-    return await db.update('todo', {'taskCompleted': taskCompleted}, where: 'id = ?', whereArgs: [id]);
+    await db!.update(
+      'todo',
+      {'taskCompleted': taskCompleted ? 1 : 0},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
-  Future<int> deleteTask(int id) async {
+  Future<void> deleteTask(int id) async {
     final db = await database;
-    return await db.delete('todo', where: 'id = ?', whereArgs: [id]);
+    await db!.delete(
+      'todo',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }

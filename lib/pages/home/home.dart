@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/constants.dart';
+import 'package:health/pages/bmi/calculator_page.dart';
 import 'package:health/pages/fitness/fitness_page.dart';
-import 'package:health/pages/watch.dart';
+import 'package:health/pages/stopWatch.dart';
 import '../../waterReminder/water_page.dart';
 import 'components/mid_comp.dart';
 import 'components/run_card.dart';
@@ -30,7 +31,7 @@ class AnaEkran extends StatelessWidget {
                     MidComp(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => WaterReminderScreen(),
+                          builder: (context) => FitPage(),
                         ));
                       },
                       image: 'assets/fitness/anaEkran.jpg',
@@ -39,11 +40,11 @@ class AnaEkran extends StatelessWidget {
                     MidComp(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FitPage(),
+                            builder: (context) => CalculatorScreen(),
                           ));
                         },
-                        image: 'assets/fitness/graph.jpg',
-                        text: 'All\nSta\ntis\ntics'),
+                        image: 'assets/fitness/bmi.jpg',
+                        text: 'CAL\nCU\nLA\nTE\nBMI'),
                   ],
                 ),
                 Stack(

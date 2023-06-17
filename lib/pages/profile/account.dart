@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health/components/tabBar.dart';
-import 'package:health/pages/profile/components/box.dart';
+import 'package:health/pages/profile/components/textBox.dart';
 import 'package:health/components/constants.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
               final userData = snapshot.data!.data() as Map<String, dynamic>;
               return ListView(
                 children: [
-                  MyTabBarIcon(
+                  const MyTabBarIcon(
                       text: 'PROFILE', image: 'assets/exerciseNavBar/user.png'),
                   Icon(
                     Icons.person,

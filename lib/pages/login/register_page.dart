@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
           .collection("users")
           .doc(userCredential.user!.email)
           .set({
-        'username': _emailController.text.split('@')[0],
+        'username': _emailController.text,
         'firstname': _firstnameController.text,
         'lastname': _lastnameController.text,
         'age': _ageController.text,
@@ -68,16 +68,6 @@ class _RegisterPageState extends State<RegisterPage> {
       displayMessage("Passwords don't match!");
       return;
     }
-  }
-
-  Future addUserDetails(
-      String firstName, String lastName, String email, int age) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'first name': firstName,
-      'last name': lastName,
-      'email': email,
-      'age': age,
-    });
   }
 
   void displayMessage(String message) {
