@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/tabBar.dart';
-import 'package:health/deneme.dart';
-import 'package:health/textBox.dart';
-import 'components/constants.dart';
+import 'package:health/pages/settings/components/textBox.dart';
+import '../../components/constants.dart';
+import 'components/notification_button.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              MyTabBarIcon(
+              const MyTabBarIcon(
                   text: 'S E T T I N G S',
                   image: 'assets/account/settings.png'),
               Icon(
@@ -23,13 +23,13 @@ class SettingsPage extends StatelessWidget {
                 size: 70,
                 color: Colors.grey.shade600,
               ),
-              Text(
+              const Text(
                 'Settings',
                 textAlign: TextAlign.center,
                 style: kLabelTextStyle,
               ),
               const SizedBox(height: 20),
-              Text(
+              const Text(
                 'Details',
                 style: kLabelTextStyle,
               ),
@@ -48,10 +48,10 @@ class SettingsPage extends StatelessWidget {
                 sectionName: 'measurement unit',
                 onPressed: () {},
               ),
-              NotificationButton(text: 'Stop All Notifications'),
-              NotificationButton(text: 'Update Notifications'),
-              NotificationButton(text: 'Update Notifications'),
-              NotificationButton(text: 'Update Notifications'),
+              const NotificationButton(text: 'Stop All Notifications'),
+              const NotificationButton(text: 'Update Notifications'),
+              const NotificationButton(text: 'Update Notifications'),
+              const NotificationButton(text: 'Update Notifications'),
             ],
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health/pages/auth/main_page.dart';
-import 'package:health/theme/dark_theme.dart';
-import 'package:health/theme/light_theme.dart';
+import 'package:health/components/theme/dark_theme.dart';
+import 'package:health/components/theme/light_theme.dart';
 import 'firebase_options.dart';
 
 void main() async {

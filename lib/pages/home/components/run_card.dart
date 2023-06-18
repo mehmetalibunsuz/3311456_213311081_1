@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/constants.dart';
-import 'package:health/statistics/statistics.dart';
+import 'package:health/pages/statistics/statistics.dart';
 
 class RunCard extends StatelessWidget {
   const RunCard({super.key});

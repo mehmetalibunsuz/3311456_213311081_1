@@ -15,6 +15,7 @@ class _MyTabBarState extends State<MyTabBar> {
   final currentUser = FirebaseAuth.instance.currentUser!;
 
   Future<void> editField(String filed) async {}
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
@@ -23,8 +24,22 @@ class _MyTabBarState extends State<MyTabBar> {
           .doc(currentUser.email)
           .snapshots(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final userData = snapshot.data!.data() as Map<String, dynamic>;
+        if (snapshot.hasData && snapshot.data!.exists) {
+          final userData = snapshot.data!.data() as Map<String, dynamic>?;
+
+          String firstName = '';
+          String lastName = '';
+
+          if (currentUser.providerData
+              .any((info) => info.providerId == 'google.com')) {
+            // Google ile giriş yapılmışsa displayName kullanılıyor
+            firstName = userData?['displayName'] ?? '';
+          } else {
+            // Google ile giriş yapılmamışsa firstname ve lastname kullanılıyor
+            firstName = userData?['firstname'] ?? '';
+            lastName = userData?['lastname'] ?? '';
+          }
+
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -45,7 +60,7 @@ class _MyTabBarState extends State<MyTabBar> {
                       Row(
                         children: [
                           Text(
-                            userData['firstname'], // Use the extracted username
+                            firstName,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 20,
@@ -54,7 +69,7 @@ class _MyTabBarState extends State<MyTabBar> {
                           ),
                           SizedBox(width: 4),
                           Text(
-                            userData['lastname'], // Use the extracted username
+                            lastName,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 20,
@@ -83,7 +98,7 @@ class _MyTabBarState extends State<MyTabBar> {
           );
         } else if (snapshot.hasError) {
           return Center(
-            child: Text('Error${snapshot.error}'),
+            child: Text('Error: ${snapshot.error}'),
           );
         }
         return const Center(

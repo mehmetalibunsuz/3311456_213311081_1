@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:health/components/constants.dart';
 
 class NotificationButton extends StatelessWidget {
   final String text;
@@ -14,8 +13,8 @@ class NotificationButton extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Theme.of(context).colorScheme.primaryContainer),
-      padding: EdgeInsets.only(left: 15, bottom: 15, top: 10),
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+      padding: const EdgeInsets.only(left: 15, bottom: 15, top: 10),
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: SwitchListTile(
         dense: true,
         activeColor: Theme.of(context).colorScheme.primary,

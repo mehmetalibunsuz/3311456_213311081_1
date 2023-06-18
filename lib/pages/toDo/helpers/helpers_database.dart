@@ -44,13 +44,13 @@ class DatabaseHelper {
     return await db!.query('todo');
   }
 
- Future<int> insertTask(String taskName, bool taskCompleted) async {
-  final db = await database;
-  return await db!.insert(
-    'todo',
-    {'taskName': taskName, 'taskCompleted': taskCompleted ? 1 : 0},
-  );
-}
+  Future<int> insertTask(String taskName, bool taskCompleted) async {
+    final db = await database;
+    return await db!.insert(
+      'todo',
+      {'taskName': taskName, 'taskCompleted': taskCompleted ? 1 : 0},
+    );
+  }
 
   Future<void> updateTask(int id, bool taskCompleted) async {
     final db = await database;

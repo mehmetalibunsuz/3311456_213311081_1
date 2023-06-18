@@ -49,6 +49,7 @@ dependencies:
   cloud_firestore: ^4.6.0
   http: ^0.13.6
   sqflite: ^2.2.8+4  
+  path:
   
 
 dev_dependencies:

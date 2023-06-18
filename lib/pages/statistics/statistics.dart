@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/tabBar.dart';
 import 'package:health/components/constants.dart';
-import 'package:health/pages/graph/graph_bar.dart';
-import 'package:health/statistics/components/long_containers.dart';
+import 'package:health/components/graph/graph_bar.dart';
+import 'package:health/pages/statistics/components/long_containers.dart';
 import 'components/short_containers.dart';
 
 class Statistics extends StatefulWidget {

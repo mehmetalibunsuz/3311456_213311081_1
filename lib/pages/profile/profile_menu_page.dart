@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health/components/constants.dart';
 import 'package:health/pages/profile/nofitications.dart';
-import 'package:health/settings.dart';
+import 'package:health/pages/settings/settings.dart';
 import 'package:share_plus/share_plus.dart';
 import 'account.dart';
 import 'components/profile_menu_tile.dart';

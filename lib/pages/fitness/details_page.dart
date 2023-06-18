@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health/components/constants.dart';
 
 class DetailsPage extends StatelessWidget {
   final String imagePath;
@@ -36,7 +37,7 @@ class DetailsPage extends StatelessWidget {
             ),
             Container(
               color: Theme.of(context).colorScheme.secondary,
-              height: 360,
+              height: 450,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,18 +50,12 @@ class DetailsPage extends StatelessWidget {
                         Text(
                           title,
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'BebasNeue'),
                         ),
-                        Text(
-                          details,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 15,
-                          ),
-                        ),
+                        Text(details, style: kLabelTextStyle),
                       ],
                     ),
                   ),

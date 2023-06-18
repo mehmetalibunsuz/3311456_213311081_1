@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:health/components/tabBar.dart';
+import 'package:health/pages/waterReminder/water_page.dart';
 import 'menu_card.dart';
 
 class Menus extends StatefulWidget {
@@ -17,6 +19,9 @@ class _MenusState extends State<Menus> {
       body: SafeArea(
         child: Column(
           children: [
+            MyTabBarIcon(
+                text: 'MENU', image: 'assets/exerciseNavBar/anamenu.png'),
+            const SizedBox(height: 20),
             CalendarTimeline(
               initialDate: DateTime.now(),
               firstDate: DateTime.now(),
@@ -31,7 +36,8 @@ class _MenusState extends State<Menus> {
               selectableDayPredicate: (date) => date.day != 23,
               locale: 'en_ISO',
             ),
-            const CardMenus(
+            const SizedBox(height: 20),
+            CardMenus(
               backroundImage: 'assets/login/sleep.png',
               littleImage: 'assets/login/moon.png',
               title: 'SLEEP TRACKING',
@@ -39,8 +45,9 @@ class _MenusState extends State<Menus> {
               title2: 'Sleep Duration : 7h30min',
               title3: 'Wake up Time : 07:00',
               title4: 'One Daydream',
+              onTap: () {},
             ),
-            const CardMenus(
+            CardMenus(
               backroundImage: 'assets/login/waterback.png',
               littleImage: 'assets/login/littlewater.png',
               title: 'Water Reminder',
@@ -48,15 +55,11 @@ class _MenusState extends State<Menus> {
               title2: 'Consumed Today : 1400 ml',
               title3: 'Remaining : 600 ml',
               title4: 'One Daydream',
-            ),
-            const CardMenus(
-              backroundImage: 'assets/login/sleep.png',
-              littleImage: 'assets/login/moon.png',
-              title: 'SLEEP TRACKING',
-              title1: 'Sleep Time : 22:00',
-              title2: 'Sleep Duration : 7h30min',
-              title3: 'Wake up Time : 07:00',
-              title4: 'One Daydream',
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WaterReminderScreen(),
+                ));
+              },
             ),
           ],
         ),
