@@ -9,6 +9,9 @@ class DatabaseHelper {
 
   DatabaseHelper._();
 
+  // Veritabanına erişim için bir Future<Database> döndüren getter metodu
+  // Eğer _database null değilse mevcut veritabanını döndürür
+  // Eğer _database null ise _initDatabase() metodu çağrılarak veritabanı başlatılır ve _database döndürülür
   Future<Database?> get database async {
     if (_database != null) {
       return _database;
@@ -18,6 +21,7 @@ class DatabaseHelper {
     return _database;
   }
 
+  // Veritabanını başlatmak için kullanılan özel bir metot
   Future<Database> _initDatabase() async {
     final String path = await getDatabasesPath();
     final String dbPath = join(path, 'todo.db');
@@ -29,6 +33,8 @@ class DatabaseHelper {
     );
   }
 
+  // Veritabanı oluşturma metodu
+  // 'todo' adında bir tablo oluşturur
   Future<void> _createDatabase(Database db, int version) async {
     await db.execute('''
       CREATE TABLE todo(
@@ -39,11 +45,13 @@ class DatabaseHelper {
     ''');
   }
 
+  // Tüm görevleri getiren metot
   Future<List<Map<String, dynamic>>> getTasks() async {
     final Database? db = await instance.database;
     return await db!.query('todo');
   }
 
+  // Yeni bir görev eklemek için kullanılan metot
   Future<int> insertTask(String taskName, bool taskCompleted) async {
     final db = await database;
     return await db!.insert(
@@ -52,6 +60,7 @@ class DatabaseHelper {
     );
   }
 
+  // Bir görevin tamamlanma durumunu güncellemek için kullanılan metot
   Future<void> updateTask(int id, bool taskCompleted) async {
     final db = await database;
     await db!.update(
@@ -62,6 +71,7 @@ class DatabaseHelper {
     );
   }
 
+  // Bir görevi silmek için kullanılan metot
   Future<void> deleteTask(int id) async {
     final db = await database;
     await db!.delete(

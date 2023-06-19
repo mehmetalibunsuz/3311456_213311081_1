@@ -22,6 +22,7 @@ class _ToDoPageState extends State<ToDoPage> {
     _loadToDoList();
   }
 
+  // Görev listesini yükleyen metot
   void _loadToDoList() async {
     final tasks = await _databaseHelper.getTasks();
     setState(() {
@@ -30,6 +31,7 @@ class _ToDoPageState extends State<ToDoPage> {
     });
   }
 
+  // Checkbox değiştiğinde çağrılan metot
   void checkBoxChanged(bool? value, int index) async {
     final int id = _toDoList[index]['id'];
     final bool taskCompleted = value ?? false;
@@ -40,6 +42,7 @@ class _ToDoPageState extends State<ToDoPage> {
     });
   }
 
+  // Yeni bir görevi kaydeden metot
   void saveNewTask() async {
     final String taskName = _controller.text;
     final bool taskCompleted = false;
@@ -56,6 +59,7 @@ class _ToDoPageState extends State<ToDoPage> {
     Navigator.of(context).pop();
   }
 
+  // Yeni görev oluşturmak için çağrılan metot
   void createNewTask() {
     showDialog(
       context: context,
@@ -69,6 +73,7 @@ class _ToDoPageState extends State<ToDoPage> {
     );
   }
 
+  // Bir görevi silen metot
   void deleteTask(int index) async {
     final int id = _toDoList[index]['id'];
     await _databaseHelper.deleteTask(id);
