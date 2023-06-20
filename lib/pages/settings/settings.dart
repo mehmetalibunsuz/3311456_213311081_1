@@ -23,18 +23,13 @@ class SettingsPage extends StatelessWidget {
                 size: 70,
                 color: Colors.grey.shade600,
               ),
-              const Text(
-                'Settings',
-                textAlign: TextAlign.center,
-                style: kLabelTextStyle,
-              ),
               const SizedBox(height: 20),
               const Text(
                 'Details',
                 style: kLabelTextStyle,
               ),
               SettingsTextBox(
-                text: 'Türkçe',
+                text: 'English',
                 sectionName: 'Language',
                 onPressed: () {},
               ),

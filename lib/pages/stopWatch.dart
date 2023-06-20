@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/components.dart';
 import 'package:health/components/constants.dart';
-import 'package:health/components/tabBar.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class Watch extends StatefulWidget {
@@ -29,9 +28,14 @@ class _WatchState extends State<Watch> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(children: [
-            const MyTabBarIcon(
-              text: 'STOPWATCH',
-              image: 'assets/tabbar/stopwatch.png',
+            Text(
+              'STOPWATCH',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 30,
+                fontFamily: 'BrunoAce',
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Stack(children: [
               Container(

@@ -50,7 +50,7 @@ class FitPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              MyTabBarIcon(
+              const MyTabBarIcon(
                 text: 'WORKOUT',
                 image: 'assets/tabbar/gym.png',
               ),
@@ -95,7 +95,7 @@ class FitPage extends StatelessWidget {
                             Center(
                               child: Text(
                                 _images[index].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 45,
                                   fontFamily: 'FugazOne',
                                   color: Colors.white,

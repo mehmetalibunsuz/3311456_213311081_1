@@ -2,13 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health/components/constants.dart';
+import 'package:health/components/tabBar.dart';
+import 'package:health/pages/feedback/about.dart';
 import 'package:health/pages/profile/nofitications.dart';
 import 'package:health/pages/settings/settings.dart';
 import 'package:share_plus/share_plus.dart';
 import 'account.dart';
 import 'components/profile_menu_tile.dart';
 import 'components/profilepic_tile.dart';
-import '../feedback/feedback.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({super.key});
@@ -22,6 +23,10 @@ class ProfileMenu extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
+            const MyTabBarIcon(
+              image: "assets/account/settings.png",
+              text: 'S E T T I N G S',
+            ),
             const ProfilePic(),
             const SizedBox(height: 10),
             Text(
@@ -66,11 +71,11 @@ class ProfileMenu extends StatelessWidget {
                   },
                 ),
                 ProfileTile(
-                  text: "Help Center",
+                  text: "About",
                   iconImage: "assets/account/help.png",
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => FeedbackScreen(),
+                      builder: (context) => About(),
                     ));
                   },
                 ),

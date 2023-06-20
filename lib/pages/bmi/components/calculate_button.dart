@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../result_page.dart';
-import '../utils/calculate_bmi.dart';
 
 class BmiButton extends StatelessWidget {
   final String text;
@@ -26,12 +24,12 @@ class BmiButton extends StatelessWidget {
         height: 70,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Color.fromARGB(255, 131, 240, 131),
+          color: const Color.fromARGB(255, 131, 240, 131),
         ),
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.black, fontFamily: 'BebasNeue', fontSize: 25),
           ),
         ),

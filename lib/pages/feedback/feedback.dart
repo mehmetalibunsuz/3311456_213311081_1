@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health/components/constants.dart';
 import 'package:health/components/tabBar.dart';
+import 'package:health/pages/feedback/about.dart';
+import 'package:health/pages/feedback/components/icons.dart';
 import 'package:health/pages/login/components/my_login_button.dart';
 import 'package:health/pages/login/components/my_textfield.dart';
 
@@ -27,16 +29,22 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     super.dispose();
   }
 
-  @override
-  Future sendFeedback() async {
+  Future<void> sendFeedback() async {
     addUserDetails(
       _usernameController.text.trim(),
       _emailController.text.trim(),
       _suggestionController.text.trim(),
     );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Feedback sent!'),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 
-  Future addUserDetails(
+  Future<void> addUserDetails(
     String username,
     String email,
     String suggestion,
@@ -58,7 +66,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const MyTabBarIcon(
-                  text: 'FEEDBACK', image: 'assets/account/help.png'),
+                text: 'FEEDBACK',
+                image: 'assets/account/help.png',
+              ),
               const SizedBox(height: 50),
               Image.asset(
                 'assets/account/feedback.png',
@@ -71,7 +81,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 style: kLabelTextStyle,
               ),
               const SizedBox(height: 25),
-              //mail textfiled
               MyTextForm(
                 controller: _usernameController,
                 hintText: 'Username',
@@ -88,9 +97,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               ),
               const SizedBox(height: 16.0),
               MyButton(
-                  onTap: sendFeedback,
-                  text: 'send feedback',
-                  color: Colors.limeAccent[400]),
+                onTap: sendFeedback,
+                text: 'send feedback',
+                color: Colors.limeAccent[400],
+              ),
+              const SizedBox(height: 50),
+              IconScreen(),
             ],
           ),
         ),

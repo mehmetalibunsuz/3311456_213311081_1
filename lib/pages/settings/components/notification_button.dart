@@ -18,7 +18,7 @@ class NotificationButton extends StatelessWidget {
       child: SwitchListTile(
         dense: true,
         activeColor: Theme.of(context).colorScheme.primary,
-        contentPadding: EdgeInsets.all(0),
+        contentPadding: const EdgeInsets.all(0),
         title: Text(
           text,
           style: TextStyle(

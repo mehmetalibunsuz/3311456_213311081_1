@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:health/components/tabBar.dart';
 import 'package:health/components/constants.dart';
 import 'package:http/http.dart' as http;
 import 'model/model.dart';
@@ -44,7 +43,7 @@ class _NutritionState extends State<Nutrition> {
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             child: Column(
               children: [
                 Text('NUTRITIONS',
@@ -108,7 +107,7 @@ class _NutritionState extends State<Nutrition> {
                           Container(
                               height: 200,
                               width: 350,
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                   image: const DecorationImage(
                                       image: AssetImage(

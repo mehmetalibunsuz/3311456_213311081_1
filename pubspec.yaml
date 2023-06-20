@@ -37,16 +37,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   percent_indicator: ^4.2.3
   flutter_slidable: ^3.0.0
-  calendar_timeline: ^1.1.2
   font_awesome_flutter: ^10.4.0
   share_plus: ^7.0.2
   lottie: ^2.3.2
   google_sign_in: ^6.1.0
   fl_chart: ^0.62.0
-  stop_watch_timer: ^2.0.0
-  firebase_core: ^2.10.0
-  firebase_auth: ^4.4.2
-  cloud_firestore: ^4.6.0
+  stop_watch_timer: ^2.0.0 
+  firebase_core: ^2.13.0
+  firebase_auth: ^4.6.1
+  cloud_firestore: ^4.7.1
   http: ^0.13.6
   sqflite: ^2.2.8+4  
   path:
@@ -100,16 +99,15 @@ flutter:
     - family: BebasNeue
       fonts:
         - asset: assets/fonts/BebasNeue-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+          
     - family: Bungee
       fonts:
         - asset: assets/fonts/Bungee-Regular.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  
     - family: FugazOne
       fonts:
         - asset: assets/fonts/FugazOne-Regular.ttf
+    
     - family: BrunoAce
       fonts:
         - asset: assets/fonts/BrunoAce-Regular.ttf

@@ -2,112 +2,85 @@ import 'package:flutter/material.dart';
 import 'package:health/components/constants.dart';
 import 'package:health/pages/bmi/calculator_page.dart';
 import 'package:health/pages/fitness/fitness_page.dart';
-import 'package:health/pages/stopWatch.dart';
-import '../waterReminder/water_page.dart';
-import 'components/mid_comp.dart';
-import 'components/run_card.dart';
-import 'tabBar/tabBar.dart';
+import 'package:health/pages/home/components/home_tile.dart';
+import 'package:health/pages/home/components/drawer.dart';
+import 'package:health/pages/home/components/tabBar.dart';
+import 'package:health/pages/profile/account.dart';
+import 'package:health/pages/statistics/statistics.dart';
 
-class AnaEkran extends StatelessWidget {
-  const AnaEkran({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MyDrawer(),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        elevation: 0,
+        title: const MyTabBar(),
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/tabbar/user.png',
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ProfilePage(),
+              ));
+            },
+          ),
+        ],
+      ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                MyTabBar(),
-                const SizedBox(height: 15),
-                const RunCard(),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MidComp(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FitPage(),
-                        ));
-                      },
-                      image: 'assets/fitness/anaEkran.jpg',
-                      text: 'LET\'S ACHIEVE\nYOUR DESIRED BODY SHAPE',
-                    ),
-                    MidComp(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => CalculatorScreen(),
-                          ));
-                        },
-                        image: 'assets/fitness/bmi.jpg',
-                        text: 'CAL\nCU\nLA\nTE\nBMI'),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 200,
-                      color: Theme.of(context).colorScheme.background,
-                      child: Image.asset(
-                        'assets/steps/womans.png',
-                      ),
-                    ),
-                    Positioned(
-                      left: 10,
-                      top: 30,
-                      child: Column(
-                        children: [
-                          const Text(
-                            'START A RUN!',
-                            style: kLabelTextStyle,
-                          ),
-                          const SizedBox(height: 10),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const Watch(),
-                              ));
-                            },
-                            child: Container(
-                                width: 95,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    gradient: const LinearGradient(
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
-                                        colors: [Colors.purple, Colors.blue])),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.keyboard_arrow_right,
-                                      size: 30,
-                                      color: Colors.black.withOpacity(0.7),
-                                    ),
-                                    Icon(
-                                      Icons.keyboard_arrow_right,
-                                      size: 30,
-                                      color: Colors.black.withOpacity(0.5),
-                                    ),
-                                    Icon(
-                                      Icons.keyboard_arrow_right,
-                                      size: 30,
-                                      color: Colors.black.withOpacity(0.4),
-                                    ),
-                                  ],
-                                )),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 15),
+              MyCards(
+                backgroundImage: 'assets/fitness/intro.jpg',
+                icon: 'assets/steps/running.png',
+                title: randomStep().toString(),
+                subtitle: 'Steps',
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Statistics(),
+                  ));
+                },
+              ),
+              const SizedBox(height: 30),
+              MyCards(
+                backgroundImage: 'assets/fitness/spor.jpg',
+                icon: 'assets/tabbar/gym.png',
+                title: 'Training',
+                subtitle: 'you will be the best',
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FitPage(),
+                  ));
+                },
+              ),
+              const SizedBox(height: 30),
+              MyCards(
+                backgroundImage: 'assets/fitness/fitgirl.jpg',
+                icon: 'assets/fitness/bmi.png',
+                title: 'B M I',
+                subtitle: 'CALCULATE',
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CalculatorScreen(),
+                  ));
+                },
+              ),
+            ],
           ),
         ),
       ),

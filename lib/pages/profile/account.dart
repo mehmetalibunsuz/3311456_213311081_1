@@ -15,7 +15,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
 
-  Future<void> editField(String filed) async {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       text: 'PROFILE', image: 'assets/exerciseNavBar/user.png'),
                   Icon(
                     Icons.person,
-                    size: 70,
+                    size: 100,
                     color: Colors.grey.shade600,
                   ),
                   Text(
@@ -53,22 +52,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   MyTextBox(
                     text: userData['username'],
                     sectionName: 'username',
-                    onPressed: () => editField('username'),
+                    onPressed: () {},
                   ),
                   MyTextBox(
                     text: userData['firstname'],
                     sectionName: 'firstname',
-                    onPressed: () => editField('username'),
+                    onPressed: () {},
                   ),
                   MyTextBox(
                     text: userData['lastname'],
                     sectionName: 'lastname',
-                    onPressed: () => editField('username'),
+                    onPressed: () {},
                   ),
                   MyTextBox(
                     text: userData['age'].toString(),
                     sectionName: 'age',
-                    onPressed: () => editField('bio'),
+                    onPressed: () {},
                   ),
                 ],
               );

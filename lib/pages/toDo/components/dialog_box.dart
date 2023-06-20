@@ -42,7 +42,7 @@ class DialogBox extends StatelessWidget {
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(16))),
+                    borderRadius: const BorderRadius.all(Radius.circular(16))),
                 hintText: 'Add a new task',
                 hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.primary,

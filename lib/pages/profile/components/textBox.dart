@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class MyTextBox extends StatelessWidget {
   final String text;
   final String sectionName;
@@ -16,24 +17,14 @@ class MyTextBox extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Theme.of(context).colorScheme.primaryContainer),
-      padding: const EdgeInsets.only(left: 15, bottom: 15),
+      padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              sectionName,
-              style: TextStyle(color: Colors.grey.shade500),
-            ),
-            IconButton(
-                onPressed: onPressed,
-                icon: Icon(
-                  Icons.settings,
-                  color: Colors.grey.shade400,
-                ))
-          ],
+        Text(
+          sectionName,
+          style: TextStyle(color: Colors.grey.shade500),
         ),
+        const SizedBox(height: 10),
         Text(
           text,
           style: TextStyle(

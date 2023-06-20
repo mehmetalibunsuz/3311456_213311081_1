@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:health/pages/home/home.dart';
 import 'package:health/pages/nutrition/nutrition.dart';
-import 'package:health/pages/profile/profile_menu_page.dart';
 import 'package:health/pages/toDo/toDo_page.dart';
+import '../pages/stopWatch.dart';
+import 'package:health/pages/home/home.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -28,10 +28,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               });
             },
             children: [
-              const AnaEkran(),
+              const MyHomePage(),
               Nutrition(),
               const ToDoPage(),
-              const ProfileMenu(),
+              const Watch(),
             ],
           ),
           Positioned(
@@ -113,7 +113,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           _controller.jumpToPage(3);
                         },
                         icon: Image.asset(
-                          "assets/exerciseNavBar/user.png",
+                          "assets/exerciseNavBar/stopwatch.png",
                           height: 25,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
