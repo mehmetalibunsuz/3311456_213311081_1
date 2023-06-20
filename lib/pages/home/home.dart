@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             icon: Image.asset(
-              'assets/tabbar/user.png',
+              'assets/account/me.png',
               color: Theme.of(context).colorScheme.primary,
             ),
             onPressed: () {

@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
               return ListView(
                 children: [
                   const MyTabBarIcon(
-                      text: 'PROFILE', image: 'assets/exerciseNavBar/user.png'),
+                      text: 'PROFILE', image: 'assets/account/me.png'),
                   Icon(
                     Icons.person,
                     size: 100,

@@ -39,7 +39,7 @@ class ProfileMenu extends StatelessWidget {
               children: [
                 ProfileTile(
                   text: "My Account",
-                  iconImage: "assets/exerciseNavBar/user.png",
+                  iconImage: "assets/account/me.png",
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ProfilePage(),
