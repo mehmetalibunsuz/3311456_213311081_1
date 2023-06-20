@@ -44,7 +44,7 @@ class _StatisticsState extends State<Statistics> {
                         const SizedBox(height: 2),
                         const ShortContainer(
                           color: Color.fromARGB(255, 255, 174, 136),
-                          image: 'assets/login/littlewater.png',
+                          image: 'assets/steps/littlewater.png',
                           title: 'Water',
                           numbers: '1200 ',
                           subtitle: 'ml',
@@ -54,7 +54,7 @@ class _StatisticsState extends State<Statistics> {
                     Column(
                       children: [
                         const ShortContainer(
-                          image: 'assets/login/moon.png',
+                          image: 'assets/steps/moon.png',
                           title: 'Sleep Time',
                           subtitle: 'hours',
                           numbers: '23:09',

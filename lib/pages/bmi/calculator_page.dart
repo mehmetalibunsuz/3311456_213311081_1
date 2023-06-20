@@ -50,8 +50,8 @@ class CalculatorScreenState extends State<CalculatorScreen> {
                           });
                         },
                         colour: selectedGender == Gender.male
-                            ? Theme.of(context).colorScheme.primary
-                            : const Color.fromARGB(255, 117, 255, 117),
+                            ? Color.fromARGB(255, 131, 240, 131)
+                            : Theme.of(context).colorScheme.primary,
                         cardChild: IconContent(
                           icon: FontAwesomeIcons.person,
                           label: 'MALE',
@@ -67,8 +67,8 @@ class CalculatorScreenState extends State<CalculatorScreen> {
                           });
                         },
                         colour: selectedGender == Gender.female
-                            ? Theme.of(context).colorScheme.primary
-                            : const Color.fromARGB(255, 240, 41, 240),
+                            ? Color.fromARGB(255, 131, 240, 131)
+                            : Theme.of(context).colorScheme.primary,
                         cardChild: IconContent(
                           icon: FontAwesomeIcons.female,
                           label: 'FEMALE',
