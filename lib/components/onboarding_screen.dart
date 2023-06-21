@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health/pages/nutrition/nutrition.dart';
 import 'package:health/pages/toDo/toDo_page.dart';
-import '../pages/stopWatch.dart';
+import '../pages/stopWatch/stopWatch.dart';
 import 'package:health/pages/home/home.dart';
 
 class OnBoardingScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health/components/components.dart';
 import 'package:health/components/constants.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:health/pages/stopWatch/components.dart';
 
 class Watch extends StatefulWidget {
   const Watch({Key? key}) : super(key: key);
